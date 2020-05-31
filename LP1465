@@ -1,0 +1,21 @@
+//Max Area of a Piece of Cake After Horizontal and Vertical Cuts
+class Solution {
+    public int maxArea(int h, int w, int[] hor, int[] ver) {
+        Arrays.sort(hor);
+        Arrays.sort(ver);
+        
+    int mod = 1000000007;
+       long maxH = Math.max(hor[0],h-hor[hor.length-1]);
+        long maxV = Math.max(ver[0],w-ver[ver.length-1]);
+        
+        for(int i=0;i<hor.length-1;i++)
+            maxH = Math.max(maxH, hor[i+1]-hor[i]);
+        
+        for(int i=0;i<ver.length-1;i++)
+            maxV = Math.max(maxV,ver[i+1]-ver[i]);
+        
+        long ans = ((maxH%mod)*(maxV%mod))%mod;
+        
+        return (int)ans;
+    }
+}
