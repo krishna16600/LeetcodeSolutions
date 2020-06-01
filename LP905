@@ -1,0 +1,22 @@
+class Solution {
+    public int[] sortArrayByParity(int[] A) {
+        int n = A.length;
+        int even = 0;
+        for(int i=0;i<n;i++){
+            if(A[i]%2==0){
+                int temp = A[even];
+                A[even] = A[i];
+                A[i] = temp;
+                even++;
+            }
+        }
+        return A;
+    }
+}
+
+This question can be solved in many ways:
+1.using in place swapping as shown above. 
+2. Create a new array and by using 2 pointers, one for even and another for odd, 
+initialize even with 0(index) and odd with n-1.
+when we encounter even element in original array, we put the same in newArr[even] and increment even by 1
+and if odd, then put odd element at newArr[odd] and decrement odd by 1.
