@@ -1,0 +1,30 @@
+class Solution {
+  public int countNegatives(int[][] grid) {
+        int res = 0;
+        int m = grid.length;
+        int n = grid[0].length;
+        int i = 0;
+        int j = n - 1;
+        while (i < m && j >= 0) {
+            if (grid[i][j] < 0) {
+            //as given in the question, matrix is sorted and in decreasing order both rows and col wise.
+            //so if a -ve number occurs it means that the whole col is of -ve and we need to look in the left cols to it.
+                res += m - i;
+                j--;
+            } else {
+                i++;
+            }
+        }
+        return res;
+    }
+}
+
+//Better illustration
+input=> [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
+ 2D matrix in form of -ve and +ve 
+ +++- 
+ +++-
+ ++--
+ ----
+ 
+ here we can observe that in 1st row and last col, we encounter first -ve value and below it the whole column is of -ve values and so on.
