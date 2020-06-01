@@ -1,0 +1,18 @@
+class Solution {
+    public int[] replaceElements(int[] arr) {
+        int n = arr.length;
+        int a = 0;
+        int max = -1;
+        
+        for(int i=n-1;i>=0;i--){
+            a=arr[i];
+            arr[i] = max;
+            max = Math.max(max,a); 
+        }
+        return arr;
+    }
+}
+
+APPROACH=>
+=> INITIALIZE MAX WITH -1 AND REPLACE LAST ELEMENT WITH MAX(-1), NOW UPDATE THE MAX IF THE CURRENT VALUE IS GREATER THAN IT.
+=> START TRAVERSING FROM THE END TO START, KEEP UPDATING MAX FROM THE RIGHT SIDE AND REPLACE THE CURRENT VALUE WITH MAX
