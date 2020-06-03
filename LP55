@@ -1,0 +1,30 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        
+        int maxIndex = nums.length-1;
+        int maxJump = nums[0];
+        
+        for(int i=0;i<=maxJump;i++){
+            maxJump = Math.max(maxJump,i+nums[i]);
+            if(maxJump>=maxIndex)
+                return true;
+        }
+        return false;
+    }
+} 
+
+/*
+Approach=> 
+The defined range to look out for max jump is by default given at nums[0].
+for ex. nums[]=> [2,3,1,1,9]
+so we can max jump 2 elements from first index. That is, from 2 you can either jump directly to 1 at 2nd index or to 3 at 1st index.
+get the max jump you can make from the given range,
+====================================
+for i=0
+maxJump = Math.max(2,0+2) => 2
+
+for i=1
+maxJump = Math.max(2,1+3) => 4
+
+now we have got our maxJump == last index, means from 1st index, we can make 3 jumps ahead and we will reach at last index, 
+so we return true.
