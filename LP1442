@@ -1,0 +1,26 @@
+//We want to select three indices i, j and k where (0 <= i < j <= k < arr.length).
+
+class Solution {
+    public int countTriplets(int[] arr) {
+        int count=0;
+        int len = arr.length;
+        
+        for(int i=0;i<len;i++)
+        {
+            int xor = arr[i];
+            for(int j=i+1;j<len;j++){
+                xor^=arr[j];
+                if(xor==0){
+                    count+=j-i;
+                }
+            }
+        }
+        return count;
+    }
+}
+
+/*
+Approach=> if we closely look at the given condition, i<j<=k, it means for a pair of i and k, any value of j making the xor=0 will work.
+for ex-> {2,3,1,6,7)
+2^3^1 will result in 0, this makes one pair, but 2^1^1 can also be a pair which will give 0 as xor as well.
+*/
