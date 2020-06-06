@@ -1,0 +1,23 @@
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        
+        for(int i=0;i<nums.length;i++){
+            int index = Math.abs(nums[i])-1;
+            
+            if(nums[index]<0)
+                list.add(Math.abs(index+1));
+            
+            nums[index] = -nums[index];
+        }
+        return list;
+    }
+}
+
+/*
+Approach=> 
+1. treat nums[i] as an index, and replace the value at nums[index] to -ve.
+2. while checking the whole array if some value points to the index where value is already negative, it means that the value was changed
+same number before it. so we add it to the result.
+
+TC=> O(N)
