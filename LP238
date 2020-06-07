@@ -1,0 +1,61 @@
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int[] res = new int[nums.length];
+        int len = nums.length;
+        int left = 1;
+        res[0] = 1;
+        
+        for(int i=1;i<len;i++){
+            left = left*nums[i-1];
+            res[i] = left;
+        }
+        
+        int right = 1;
+        
+        for(int i=len-2;i>=0;i--){
+            right = nums[i+1] * right;
+            res[i]*=right;
+        }
+        return res;
+    }
+}
+
+/*
+Approach =>
+create one new array in which we will store our result.
+input => [1,2,3,4]
+output=> [24,12,8,6]
+
+if we observe carefully we can divide it into two parts, one is if we are at ith position, then we need to know the result of 
+left half and also the right half. res[i] = left*right
+
+arr=  1  2  3  4
+left= 1  1  2  6
+
+if we are at 1st index(2) then product of left half is 1.
+if we are at 2nd index(3), product from left part is 2
+if we are at 3rd index(4), product from left part is 6
+
+we can see that-> res[i] = left*arr[i-1]
+
+now our result array would be like -> 1 1 2 6
+
+we have set our last element correctly and we need not to do anything with it now.
+arr= 1  2  3  4
+res= 1  1  2  6
+
+if we start from 2nd index(3), then we can observe that we just need to multiply res[i] with arr[i+1], but also we need to maintain
+the product as well
+
+for i = 2, we need res[i] which is = 2 and arr[i+1] which is = 4, so if we are at index 2, right half ans is 4
+store it in right, right = right*arr[i+1] => 1*4 => 4
+
+res[2] = res[2]*right => 2*4 => 8
+and so on..
+
+for i = 1, res[1] = 1, arr[2] = 3 =>  right = 4*3 = 12
+res[1] = res[1]*right => 1*12 => 12 
+
+
+res= 24  12  8  6
+*/
